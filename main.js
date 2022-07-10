@@ -1,3 +1,5 @@
+"use strict";
+
 //**//GLOBAL VARIABLES//**//
 const DEVMODE = true;
 
@@ -19,15 +21,12 @@ var setCheat = document.getElementById("set_cheat");
 var lastEntry = "";
 
 //Achievements
-ach = [false, false, false, false, false, false];
+var ach = [false, false, false, false, false, false];
 
 //CPS
 var currentCPS = 0;
-var oldCPS = 0;
-var shouldCalcCPS = true;
 let isFirstTime = true;
 let CPStimer;
-let CPSarray = [];
 
 //**//PLAYER OBJECT//**//
 var player = {
@@ -42,32 +41,17 @@ progressXP.style.width = "0px";
 
 //**//CALCULATE CPS//**//
 function calculateCPS() {
-	CPSarray.push(currentCPS);
-	let cps = 0;
-
-	// Costly
-	for (let i = 0; i < CPSarray.length; i++) {
-		cps += CPSarray[i];
-	}
-	game_log(cps)
-	cps /= CPSarray.length;
-	cps = Math.floor(cps, 2)
-
-
-
-	document.getElementById("playerCps").innerHTML
-		= "Clicks per second (CPS): " + cps;
+	document.getElementById("playerCps").innerHTML = "Clicks per second (CPS): " + currentCPS;
+	console.log(currentCPS)
 	currentCPS = 0;
-	cps = 0;
 }
 
 //**//GAMEPLAY MECHANISM//**//
 add.onclick = function () {
 	if (isFirstTime) {
 		//Calculate CPS
-		if (shouldCalcCPS) {
-			CPStimer = setInterval(calculateCPS, 1000);
-		}
+		CPStimer = setInterval(calculateCPS, 1000);
+		isFirstTime = false;
 	}
 
 	progressXP.style.top = "-1px";
@@ -182,9 +166,7 @@ add.onblur = function () {
 			add.innerHTML = "Click to continue";
 		}, 1500);
 	}
-	clearInterval(CPStimer);
 	currentCPS = 0;
-	CPSarray = [];
 }
 
 //**//CLICK ANIMATION//**//
