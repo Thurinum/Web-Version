@@ -1,7 +1,7 @@
 "use strict";
 
 //**//GLOBAL VARIABLES//**//
-const DEVMODE = true;
+const DEVMODE = false;
 
 //Game
 var progressXP = document.getElementById("progressXP");
