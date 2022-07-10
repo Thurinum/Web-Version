@@ -6,15 +6,19 @@ var displayXP = document.getElementById("playerxp");
 var displayXP2 = document.getElementById("playerxp2levelup");
 var displayPer = document.getElementById("progress");
 var add = document.getElementById("addXP");
+
 //User interface
 var ui = document.getElementById("ui");
 var settings = document.getElementById("settings");
 var setDifficulty = document.getElementById("set_difficulty");
 var setCheat = document.getElementById("set_cheat");
+
 //Console
 var lastEntry = "";
+
 //Achievements
 ach = [false, false, false, false, false, false];
+
 //CPS
 var currentCPS = 0;
 var oldCPS = 0;
@@ -36,33 +40,33 @@ progressXP.style.width = "0px";
 
 //**//CALCULATE CPS//**//
 function calculateCPS() {
-    CPSarray.push(currentCPS);
-    let cps = 0;
+	CPSarray.push(currentCPS);
+	let cps = 0;
 
-    // Costly
-    for (let i = 0; i < CPSarray.length; i++) {
-        cps += CPSarray[i];
-    }
-    game_log(cps)
-    cps /= CPSarray.length;
-    cps = Math.floor(cps, 2)
+	// Costly
+	for (let i = 0; i < CPSarray.length; i++) {
+		cps += CPSarray[i];
+	}
+	game_log(cps)
+	cps /= CPSarray.length;
+	cps = Math.floor(cps, 2)
 
 
 
-    document.getElementById("playerCps").innerHTML
-            = "Clicks per second (CPS): " + cps;
-    currentCPS = 0;
-    cps = 0;
+	document.getElementById("playerCps").innerHTML
+		= "Clicks per second (CPS): " + cps;
+	currentCPS = 0;
+	cps = 0;
 }
 
 //**//GAMEPLAY MECHANISM//**//
-add.onclick = function() {
-    if (isFirstTime) {
-        //Calculate CPS
-        if (shouldCalcCPS) {
-            CPStimer = setInterval(calculateCPS, 1000);
-        }
-    }
+add.onclick = function () {
+	if (isFirstTime) {
+		//Calculate CPS
+		if (shouldCalcCPS) {
+			CPStimer = setInterval(calculateCPS, 1000);
+		}
+	}
 
 	progressXP.style.top = "-1px";
 	if (add.innerHTML !== "Level up!") {
@@ -76,7 +80,7 @@ add.onclick = function() {
 		} else {
 			player.scoreGoal = (player.scoreGoal.toFixed(0));
 		}
-		
+
 		console.log(player.scoreGoal)
 		progressXP.style.width = "0px";
 
@@ -89,7 +93,7 @@ add.onclick = function() {
 
 		ui.style.boxShadow = "0 0 10px 2px white";
 		add.innerHTML = "Level up!";
-		setTimeout(function() {
+		setTimeout(function () {
 			ui.style.boxShadow = "none";
 			if (add.innerHTML !== "Keep clicking!") {
 				add.innerHTML = "Click to continue";
@@ -139,54 +143,54 @@ add.onclick = function() {
 				ach[5] = true;
 			}
 		}
-		
-    } else {
-    	player.scoreLeft = (player.scoreLeft - 1);
-    	displayXP2.innerHTML = `Score left to level ${player.level + 1}: ${player.scoreLeft}`;
-    	player.score = player.score + 1;
-    	displayXP.innerHTML = `Total score: ${player.score}`;
-    	displayPer.innerHTML = (100 * (player.scoreGoal - player.scoreLeft) / player.scoreGoal).toFixed(0) + "%";
-    	progressXP.style.width = 160 * parseInt(displayPer.innerHTML.slice(0, -1)) / 100 + "px";
-    	if (parseInt(displayPer.innerHTML.slice(0, -1)) >= 50) {
-    		displayPer.style.color = "black";
-    	}
-    }
 
-    currentCPS++;
+	} else {
+		player.scoreLeft = (player.scoreLeft - 1);
+		displayXP2.innerHTML = `Score left to level ${player.level + 1}: ${player.scoreLeft}`;
+		player.score = player.score + 1;
+		displayXP.innerHTML = `Total score: ${player.score}`;
+		displayPer.innerHTML = (100 * (player.scoreGoal - player.scoreLeft) / player.scoreGoal).toFixed(0) + "%";
+		progressXP.style.width = 160 * parseInt(displayPer.innerHTML.slice(0, -1)) / 100 + "px";
+		if (parseInt(displayPer.innerHTML.slice(0, -1)) >= 50) {
+			displayPer.style.color = "black";
+		}
+	}
+
+	currentCPS++;
 }
 
 //**//TOGGLE SETTINGS PANEL//**//
-settings.addEventListener("mouseover", function() {
+settings.addEventListener("mouseover", function () {
 	settings.style.left = 0;
 });
-settings.addEventListener("mouseleave", function() {
+settings.addEventListener("mouseleave", function () {
 	settings.style.left = "-275px";
 });
 
 
 //**//BUTTON CONTENT ANIMATION//**//
-add.onblur = function() {
+add.onblur = function () {
 	progressXP.style.top = "0px";
 	ui.style.boxShadow = "none";
 	if (player.scoreLeft === 0) {
 		add.innerHTML = "Click to continue";
 	} else {
 		add.innerHTML = "Don't give up!";
-		setTimeout(function() {
+		setTimeout(function () {
 			add.innerHTML = "Click to continue";
 		}, 1500);
 	}
-    clearInterval(CPStimer);
-    currentCPS = 0;
-    CPSarray = [];
+	clearInterval(CPStimer);
+	currentCPS = 0;
+	CPSarray = [];
 }
 
 //**//CLICK ANIMATION//**//
-window.addEventListener("click", function(e) {
+window.addEventListener("click", function (e) {
 	if (e.target.closest("#addXP")) {
 		var x = e.pageX;
 		var y = e.pageY;
-		
+
 		var elem = document.createElement("span");
 		elem.setAttribute("class", "score");
 		elem.innerHTML = "<strong>+ 1</strong>";
@@ -194,22 +198,22 @@ window.addEventListener("click", function(e) {
 		elem.style.top = y - 30 + "px";
 		document.body.append(elem);
 
-		setTimeout(function() {
+		setTimeout(function () {
 			elem.style.top = parseInt(elem.style.top.slice(0, -2)) - 60 + "px";
 			elem.style.opacity = 1;
 		}, 300);
-		setTimeout(function() {
+		setTimeout(function () {
 			elem.style.top = parseInt(elem.style.top.slice(0, -2)) - 60 + "px";
 			elem.style.opacity = 0;
 		}, 600);
-		setTimeout(function() {
+		setTimeout(function () {
 			document.body.removeChild(elem);
 		}, 900);
 	}
 });
 
 //**//CHANGE DIFFICULTY//**//
-setDifficulty.onchange = function() {
+setDifficulty.onchange = function () {
 	if (setDifficulty.selectedIndex === 0) {
 		player.difficultyFactor = 1;
 		game_reset();
@@ -230,7 +234,7 @@ setDifficulty.onchange = function() {
 }
 
 //**//TOGGLE CHEATS//**//
-setCheat.onchange = function() {
+setCheat.onchange = function () {
 	if (setCheat.checked === true) {
 		player.difficultyFactor = 1;
 		game_reset();
@@ -241,16 +245,16 @@ setCheat.onchange = function() {
 		game_reset();
 		game_log("Ultra-speed cheat disabled.");
 	}
-} 
+}
 
 //**//PREVENT USE OF KEYBOARD//**//
-window.addEventListener("keydown", function(e) {
+window.addEventListener("keydown", function (e) {
 	e.preventDefault();
-	
-    if (e.key === "Enter") {
+
+	if (e.key === "Enter") {
 		add.innerHTML = "Don't you even dare!";
 		ui.style.boxShadow = "0 0 10px 2px red";
-		setTimeout(function() {
+		setTimeout(function () {
 			ui.style.boxShadow = "none";
 		}, 1500);
 		if (ach[0] === false) {
@@ -264,7 +268,7 @@ window.addEventListener("keydown", function(e) {
 function game_log(message) {
 	if (lastEntry !== "") {
 		lastEntry.style.opacity = 0;
-		setTimeout(function() {
+		setTimeout(function () {
 			document.body.removeChild(lastEntry);
 		}, 1000);
 	}
@@ -272,12 +276,12 @@ function game_log(message) {
 	entry.innerHTML = message;
 	document.body.append(entry);
 	entry.setAttribute("style", "position:absolute;padding-left: 10px;transition:bottom 0.3s ease-out, opacity 1.5s ease-out;bottom:-10%;left:0;opacity: 0;");
-	setTimeout(function() {
+	setTimeout(function () {
 		entry.style.bottom = 0;
 		entry.style.opacity = 1;
 		lastEntry = entry;
 	}, 1000);
-	setTimeout(function() {
+	setTimeout(function () {
 		entry.style.opacity = 0;
 	}, 5000);
 }
@@ -291,7 +295,7 @@ function game_achievement(header, message) {
 	title.innerHTML = header;
 	msg.innerHTML = message;
 	prompt.style.opacity = 1;
-	setTimeout(function() {
+	setTimeout(function () {
 		prompt.style.opacity = 0;
 	}, 3000);
 	game_log("New achievement unlocked!");
@@ -309,7 +313,7 @@ function game_reset() {
 	displayPer.innerHTML = "0%";
 	progressXP.style.width = "0px";
 	add.innerHTML = "Game was reset!";
-	setTimeout(function() {
+	setTimeout(function () {
 		add.innerHTML = "Click to start";
 	}, 2000);
 }

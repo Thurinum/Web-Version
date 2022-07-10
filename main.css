@@ -14,15 +14,18 @@ button {
 	color: white;
 	border-radius: 2px;
 }
+
 button:hover {
 	background: hsl(0, 0%, 10.3%);
 }
+
 button:active {
 	background: hsl(0, 0%, 13.3%);
 	width: 75%;
 	height: 25%;
 	font-size: 1.2em;
 }
+
 button:focus {
 	background: hsl(0, 0%, 13.3%);
 	width: 75%;
@@ -39,11 +42,11 @@ select {
 ::-moz-focus-inner {
 	border: 0;
 	outline: 0;
-} 
+}
 
 /*SPECIFIC STYLE*/
 #ui {
-        width: fit-content;
+	width: fit-content;
 	width: -moz-fit-content;
 	min-width: 25%;
 	height: fit-content;
@@ -74,8 +77,9 @@ select {
 	overflow: hidden;
 	transform: translate(0, -50%);
 }
+
 #settingsHeader {
-        transform: rotate(-90deg) translate(0, -50%);
+	transform: rotate(-90deg) translate(0, -50%);
 	position: absolute;
 	right: -25px;
 	bottom: 5%;
@@ -113,7 +117,7 @@ select {
 
 #achievement {
 	border: solid 2px white;
-	border-radius:5px;
+	border-radius: 5px;
 	width: 250px;
 	height: 100px;
 	text-align: center;
