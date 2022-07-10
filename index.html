@@ -8,10 +8,12 @@
 </head>
 
 <body>
+	<video id="background" src="resources/background.mp4" autoplay></video>
+
 	<span>Clicker by Thurinum</span><br>
 	<em>Version 1.0</em>
 	<div id="ui">
-		<h3 id="playerlevel">Level 1</h3>
+		<h1 id="playerlevel">Level 1</h1>
 		<p id="playerxp2levelup">Score left to level 2: 10</p>
 		<p id="playerxp">Total score: 0</p>
 		<p id="playerCps">Clicks per second (CPS): 0</p>
@@ -25,15 +27,21 @@
 	</div>
 	<div id="settings">
 		<h3 id="settingsHeader">Settings</h3>
-		<p><strong>Difficulty level</strong></p>
-		<select id="set_difficulty">
-			<option title="Score goal always stays the same.">Easy</option>
-			<option title="Score goal increases of 10% per level." selected>Normal</option>
-			<option disabled>Locked</option>
-			<option disabled>Locked</option>
-		</select>
-		<br>
-		<label for="set_cheat">Ultra-speed cheat</label><input id="set_cheat" type="checkbox" />
+		<h2>Game options</h2>
+		<label>
+			Difficulty level
+			<select id="set_difficulty">
+				<option title="Score goal always stays the same.">Easy</option>
+				<option title="Score goal increases of 10% per level." selected>Normal</option>
+				<option disabled>Locked</option>
+				<option disabled>Locked</option>
+			</select>
+		</label>
+		<br /><br />
+		<label>
+			<input id="set_cheat" type="checkbox" />
+			Ultra-speed cheat
+		</label>
 	</div>
 	<div id="achievement">
 		<h3 id="achievementName"></h3>

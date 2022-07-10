@@ -1,4 +1,6 @@
-//**//GLOBAL VARIABLE//**//
+//**//GLOBAL VARIABLES//**//
+const DEVMODE = true;
+
 //Game
 var progressXP = document.getElementById("progressXP");
 var displayLvl = document.getElementById("playerlevel");
@@ -150,7 +152,7 @@ add.onclick = function () {
 		player.score = player.score + 1;
 		displayXP.innerHTML = `Total score: ${player.score}`;
 		displayPer.innerHTML = (100 * (player.scoreGoal - player.scoreLeft) / player.scoreGoal).toFixed(0) + "%";
-		progressXP.style.width = 160 * parseInt(displayPer.innerHTML.slice(0, -1)) / 100 + "px";
+		progressXP.style.width = parseInt(displayPer.innerHTML.slice(0, -1)) + "%";
 		if (parseInt(displayPer.innerHTML.slice(0, -1)) >= 50) {
 			displayPer.style.color = "black";
 		}
@@ -248,21 +250,23 @@ setCheat.onchange = function () {
 }
 
 //**//PREVENT USE OF KEYBOARD//**//
-window.addEventListener("keydown", function (e) {
-	e.preventDefault();
+if (!DEVMODE) {
+	window.addEventListener("keydown", function (e) {
+		e.preventDefault();
 
-	if (e.key === "Enter") {
-		add.innerHTML = "Don't you even dare!";
-		ui.style.boxShadow = "0 0 10px 2px red";
-		setTimeout(function () {
-			ui.style.boxShadow = "none";
-		}, 1500);
-		if (ach[0] === false) {
-			game_achievement("Cheater", "Try to use the keyboard once");
-			ach[0] = true;
+		if (e.key === "Enter") {
+			add.innerHTML = "Don't you even dare!";
+			ui.style.boxShadow = "0 0 10px 2px red";
+			setTimeout(function () {
+				ui.style.boxShadow = "none";
+			}, 1500);
+			if (ach[0] === false) {
+				game_achievement("Cheater", "Try to use the keyboard once");
+				ach[0] = true;
+			}
 		}
-	}
-});
+	});
+}
 
 //**//LOG INFO TO GAME CONSOLE//**//
 function game_log(message) {

@@ -3,6 +3,7 @@ body {
 	background-color: #222222;
 	color: white;
 	overflow: hidden;
+	font-family: 'Segoe UI Light', 'Noto Sans Light', sans-serif;
 }
 
 button {
@@ -35,8 +36,9 @@ button:focus {
 
 select {
 	border: solid 1px white;
-	background: transparent;
+	background: #0a002640;
 	color: white;
+	font-family: 'Segoe UI Light', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 ::-moz-focus-inner {
@@ -45,55 +47,91 @@ select {
 }
 
 /*SPECIFIC STYLE*/
+#background {
+	width: 100vw;
+	height: 100vh;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+
+	object-fit: cover;
+
+	filter: hue-rotate(310deg) saturate(2) blur(50px);
+}
 #ui {
 	width: fit-content;
-	width: -moz-fit-content;
 	min-width: 25%;
 	height: fit-content;
-	height: -moz-fit-content;
-	padding: 15px;
-	text-align: center;
-	vertical-align: middle;
-	border: solid 2px white;
+
 	position: absolute;
-	border-radius: 5px;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	font-family: arial;
+
+	padding: 15px;
+	vertical-align: middle;
+
+	border: solid 2px white;
+	border-radius: 5px;
+	background-color: #0a002640;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.243);
+	
+	text-align: center;
+
 	transition: box-shadow 0.1s linear;
+}
+
+#ui p {
+	font-size: 1.3em;
 }
 
 #settings {
 	width: 300px;
 	height: 25%;
+	padding-left: 10px;
+
 	position: absolute;
 	top: 50%;
 	left: -275px;
-	background-color: hsl(0, 0%, 11.8%);
-	border: solid 1px white;
-	transition: left 0.5s ease-out;
-	padding-left: 10px;
-	overflow: hidden;
 	transform: translate(0, -50%);
+
+	border: solid 1px white;
+	border-left: none;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: #0a002640;
+	box-shadow: 0 0 10px #333;
+	overflow: hidden;
+	
+	transition: left 0.5s ease-out;
 }
 
 #settingsHeader {
-	transform: rotate(-90deg) translate(0, -50%);
-	position: absolute;
-	right: -25px;
-	bottom: 5%;
 	margin: 0;
 	padding: 0;
+
+	position: absolute;
+	right: -25px;
+	bottom: 50%;
+	transform: rotate(-90deg) translate(-24%, -50%);
 }
 
 .progressBar {
-	border: solid 2px white;
-	width: 160px;
+	width: 90%;
 	height: 16px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
 	position: relative;
 	margin-left: auto;
 	margin-right: auto;
+	
+	border: solid 2px white;
+	border-radius: 3px;
 }
 
 #progressXP {
