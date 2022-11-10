@@ -1,5 +1,5 @@
 # Master of Clicks!
-A small clicker game made from a redesigned old personal project. Play it online [here](https://thurinum.github.io/clicker-master/).
+A small clicker game made from a redesigned old personal project. Play it online [here](https://thurinum.github.io/click-master/).
 
 ![image](https://user-images.githubusercontent.com/43908636/178149900-ce73d208-58fc-4b0a-abce-f074045cd37f.png)
 
